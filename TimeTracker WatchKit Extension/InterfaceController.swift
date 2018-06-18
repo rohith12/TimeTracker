@@ -44,7 +44,6 @@ class InterfaceController: WKInterfaceController {
             //UI for clocked in
             topLbl.setHidden(false)
             topLbl.setText("Today: \(self.totalTimeWorkedAsString())")
-            
             Btn.setTitle("Clocked-Out")
             Btn.setBackgroundColor(UIColor.red)
             middleLbl.setText("0s")
@@ -65,11 +64,12 @@ class InterfaceController: WKInterfaceController {
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
             if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date{
-                let timeInterval = Int(Date().timeIntervalSince(clockedInDate))
                 
+                let timeInterval = Int(Date().timeIntervalSince(clockedInDate))
                 let hrs = timeInterval / 3600
                 let mins = (timeInterval % 3600) / 60
                 let secs = timeInterval % 60
+                
                 var currentTimeStr = ""
                 if hrs != 0{
                     currentTimeStr += "\(hrs)h"
@@ -91,13 +91,15 @@ class InterfaceController: WKInterfaceController {
     }
     
     func clockOut(){
+        
         clockedIn = false
+        
         if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date{
             // Adding clock in time to an clock in array
+            
             if var clockIns = UserDefaults.standard.array(forKey: "clockIns") as? [Date]{
                 clockIns.insert(clockedInDate, at: 0)
                 UserDefaults.standard.set(clockIns, forKey: "clockIns")
-                print(clockIns)
             }else{
                 UserDefaults.standard.set([clockedInDate], forKey: "clockIns")
             }
@@ -106,7 +108,6 @@ class InterfaceController: WKInterfaceController {
             if var clockOuts = UserDefaults.standard.array(forKey: "clockOuts") as? [Date]{
                 clockOuts.insert(Date(), at: 0)
                 UserDefaults.standard.set(clockOuts, forKey: "clockOuts")
-                print(clockOuts)
             }else{
                 UserDefaults.standard.set([Date()], forKey: "clockOuts")
                 
@@ -148,11 +149,10 @@ class InterfaceController: WKInterfaceController {
         
         
         var currentClockedInSec = 0
+        
         if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date{
             currentClockedInSec = Int(Date().timeIntervalSince(clockedInDate))
-            
         }
-        
         
         let totalTimeInterval = currentClockedInSec + self.totalClockedTime()
         
@@ -162,5 +162,9 @@ class InterfaceController: WKInterfaceController {
         return "\(totalHrs)h \(totalMins)m"
     }
     
+    @IBAction func historyAction() {
+    }
     
+    @IBAction func resetAll() {
+    }
 }

@@ -27,6 +27,20 @@
                             <color key="color" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </separator>
                     </items>
+                    <menu key="menu" id="VWq-g2-Htb">
+                        <items>
+                            <menuItem title="Histroy" icon="info" id="QRp-Ot-kCS">
+                                <connections>
+                                    <action selector="historyAction" destination="AgC-eL-Hgc" id="dJb-fI-qfs"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Reset All" icon="trash" id="bQM-h8-uoT">
+                                <connections>
+                                    <action selector="resetAll" destination="AgC-eL-Hgc" id="mEd-qc-HxI"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="Btn" destination="es1-vh-HX6" id="nY6-xj-ea9"/>
                         <outlet property="middleLbl" destination="Po2-M2-rUM" id="69j-0S-iCc"/>
