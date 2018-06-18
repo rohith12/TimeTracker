@@ -16,15 +16,26 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var middleLbl: WKInterfaceLabel!
     @IBOutlet var Btn: WKInterfaceButton!
     var clockedIn: Bool = false
-    
+    var timer: Timer? = nil
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         // Configure interface objects here.
-        updateUI(clockedIn: clockedIn)
     }
     
-    
+    override func willActivate() {
+        
+        if UserDefaults.standard.value(forKey: "clockedIn") != nil{
+            if timer == nil{
+                startTimer()
+            }
+            clockedIn = true
+            updateUI(clockedIn: true)
+        }else{
+            clockedIn = false
+            updateUI(clockedIn: false)
+        }
+    }
     
     //MARK: Actions
     
@@ -56,13 +67,8 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
-    
-    func clockIn(){
-        clockedIn = true
-        UserDefaults.standard.set(Date(), forKey: "clockedIn")
-        UserDefaults.standard.synchronize()
-        
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+    func startTimer(){
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
             if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date{
                 
                 let timeInterval = Int(Date().timeIntervalSince(clockedInDate))
@@ -90,9 +96,20 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
+    
+    func clockIn(){
+        clockedIn = true
+        UserDefaults.standard.set(Date(), forKey: "clockedIn")
+        UserDefaults.standard.synchronize()
+        startTimer()
+      
+    }
+    
     func clockOut(){
         
         clockedIn = false
+        timer?.invalidate()
+        timer = nil
         
         if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date{
             // Adding clock in time to an clock in array
