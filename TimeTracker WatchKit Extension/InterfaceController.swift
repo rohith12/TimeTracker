@@ -31,9 +31,9 @@ class InterfaceController: WKInterfaceController {
     @IBAction func clockInAndClockOut() {
         
         if clockedIn{
-          clockedIn = false
+          clockOut()
         }else{
-          clockedIn = true
+          clockIn()
         }
         updateUI(clockedIn: clockedIn)
 
@@ -54,5 +54,45 @@ class InterfaceController: WKInterfaceController {
           middleLbl.setText("Today\n 3h 44m")
         }
     }
+    
+   
+    func clockIn(){
+        clockedIn = true
+        UserDefaults.standard.set(Date(), forKey: "clockedIn")
+        UserDefaults.standard.synchronize()
+    }
+    
+    func clockOut(){
+        clockedIn = false
+        if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date{
+            // Adding clock in time to an clock in array
+            if var clockIns = UserDefaults.standard.array(forKey: "clockIns") as? [Date]{
+                clockIns.insert(clockedInDate, at: 0)
+                UserDefaults.standard.set(clockIns, forKey: "clockIns")
+                print(clockIns)
+            }else{
+                UserDefaults.standard.set([clockedInDate], forKey: "clockIns")
+            }
+            
+            // Adding clock out time to clock out array
+            if var clockOuts = UserDefaults.standard.array(forKey: "clockOuts") as? [Date]{
+                clockOuts.insert(Date(), at: 0)
+                UserDefaults.standard.set(clockOuts, forKey: "clockOuts")
+                print(clockOuts)
+            }else{
+                UserDefaults.standard.set([Date()], forKey: "clockOuts")
+                
+            }
+            
+            //To check if user lost power to watch or loses network after clocking in
+            UserDefaults.standard.set(nil, forKey: "clockedIn")
+
+
+        }
+        
+        UserDefaults.standard.synchronize()
+
+    }
+    
     
 }
