@@ -16,13 +16,18 @@ class TimeDetailInterfaceController: WKInterfaceController {
     @IBOutlet var clockOutLbl: WKInterfaceLabel!
     
     override func awake(withContext context: Any?) {
+        
         super.awake(withContext: context)
         
         if let dates = context as? [Date]{
             let clockIn = dates[0]
             let clockOut = dates[1]
-            clockInLbl.setText(clockIn.description)
-            clockOutLbl.setText(clockOut.description)
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM d h:mma"
+            
+            clockInLbl.setText(formatter.string(from: clockIn))
+            clockOutLbl.setText(formatter.string(from: clockOut))
         }
         
     }
