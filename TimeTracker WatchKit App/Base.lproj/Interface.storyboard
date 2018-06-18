@@ -48,6 +48,54 @@
                     </connections>
                 </controller>
             </objects>
+            <point key="canvasLocation" x="-297" y="124"/>
+        </scene>
+        <!--timeTable-->
+        <scene sceneID="KfN-BN-827">
+            <objects>
+                <controller identifier="timeTable" id="BfF-wA-WcZ" customClass="TimeTableInterfaceController" customModule="TimeTracker_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="DKW-5B-Qbd">
+                            <items>
+                                <tableRow identifier="clockInRow" id="FzE-YF-xo7" customClass="ClockInRowController" customModule="TimeTracker_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="Cfh-aX-Qtf">
+                                        <items>
+                                            <label width="1" height="1" alignment="left" verticalAlignment="center" text="Label" id="anu-Ma-Sbb">
+                                                <fontDescription key="font" type="system" pointSize="22"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="anu-Ma-Sbb" id="3a2-64-tly"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="DKW-5B-Qbd" id="iTb-q2-2MD"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-55" y="127"/>
+        </scene>
+        <!--TimeDetail-->
+        <scene sceneID="EIV-Xs-EQK">
+            <objects>
+                <controller identifier="TimeDetail" id="eOC-ak-gs4" customClass="TimeDetailInterfaceController" customModule="TimeTracker_WatchKit_Extension">
+                    <items>
+                        <label alignment="left" text="Clock-In" id="2CH-Qj-FAg"/>
+                        <label alignment="left" text="May 5th 12:00am" id="4sW-Mk-cFW"/>
+                        <label alignment="left" text="Clock-Out" id="dDM-k8-XDe"/>
+                        <label alignment="left" text="May 10th 12:00am" id="QSe-Ne-4Bm"/>
+                    </items>
+                    <connections>
+                        <outlet property="clockInLbl" destination="4sW-Mk-cFW" id="bbi-HQ-5FK"/>
+                        <outlet property="clockOutLbl" destination="QSe-Ne-4Bm" id="3oV-qi-aWH"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="193" y="124"/>
         </scene>
     </scenes>
 </document>

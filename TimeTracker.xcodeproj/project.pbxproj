@@ -19,6 +19,9 @@
 		38A3696520D802720049A439 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3696420D802720049A439 /* InterfaceController.swift */; };
 		38A3696720D802720049A439 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3696620D802720049A439 /* ExtensionDelegate.swift */; };
 		38A3696920D802720049A439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38A3696820D802720049A439 /* Assets.xcassets */; };
+		38FCB0C620D854C600F36DFE /* TimeTableInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FCB0C520D854C600F36DFE /* TimeTableInterfaceController.swift */; };
+		38FCB0C820D8565700F36DFE /* ClockInRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FCB0C720D8565700F36DFE /* ClockInRowController.swift */; };
+		38FCB0CA20D85B0F00F36DFE /* TimeDetailInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FCB0C920D85B0F00F36DFE /* TimeDetailInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +83,9 @@
 		38A3696620D802720049A439 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		38A3696820D802720049A439 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38A3696A20D802720049A439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38FCB0C520D854C600F36DFE /* TimeTableInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableInterfaceController.swift; sourceTree = "<group>"; };
+		38FCB0C720D8565700F36DFE /* ClockInRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockInRowController.swift; sourceTree = "<group>"; };
+		38FCB0C920D85B0F00F36DFE /* TimeDetailInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDetailInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +153,9 @@
 			isa = PBXGroup;
 			children = (
 				38A3696420D802720049A439 /* InterfaceController.swift */,
+				38FCB0C520D854C600F36DFE /* TimeTableInterfaceController.swift */,
+				38FCB0C720D8565700F36DFE /* ClockInRowController.swift */,
+				38FCB0C920D85B0F00F36DFE /* TimeDetailInterfaceController.swift */,
 				38A3696620D802720049A439 /* ExtensionDelegate.swift */,
 				38A3696820D802720049A439 /* Assets.xcassets */,
 				38A3696A20D802720049A439 /* Info.plist */,
@@ -298,7 +307,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38FCB0C820D8565700F36DFE /* ClockInRowController.swift in Sources */,
+				38FCB0CA20D85B0F00F36DFE /* TimeDetailInterfaceController.swift in Sources */,
 				38A3696720D802720049A439 /* ExtensionDelegate.swift in Sources */,
+				38FCB0C620D854C600F36DFE /* TimeTableInterfaceController.swift in Sources */,
 				38A3696520D802720049A439 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -78,7 +78,7 @@ class InterfaceController: WKInterfaceController {
                     currentTimeStr += "\(mins)m"
                 }
                 
-                  currentTimeStr += "\(secs)s"
+                currentTimeStr += "\(secs)s"
                 
                 
                 self.middleLbl.setText(currentTimeStr)
@@ -163,8 +163,15 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBAction func historyAction() {
+        pushController(withName: "timeTable", context: nil)
     }
     
     @IBAction func resetAll() {
+        
+        UserDefaults.standard.set(nil, forKey: "clockOuts")
+        UserDefaults.standard.set(nil, forKey: "clockIns")
+        UserDefaults.standard.set(nil, forKey: "clockedIn")
+        UserDefaults.standard.synchronize()
+        updateUI(clockedIn: false)
     }
 }
