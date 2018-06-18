@@ -45,13 +45,13 @@ class InterfaceController: WKInterfaceController {
             topLbl.setHidden(false)
             Btn.setTitle("Clocked-Out")
             Btn.setBackgroundColor(UIColor.red)
-            middleLbl.setText("5m 44s")
+            middleLbl.setText("0h 0m 0s")
         }else{
             //UI for clocked out
             topLbl.setHidden(true)
             Btn.setTitle("Clocked-In")
             Btn.setBackgroundColor(UIColor.green)
-            middleLbl.setText("Today\n 3h 44m")
+            middleLbl.setText("Today:\n \(totalTimeWorkedAsString())")
         }
     }
     
@@ -71,6 +71,9 @@ class InterfaceController: WKInterfaceController {
                
                 self.middleLbl.setText("\(hrs)h \(mins)m \(secs)s")
                 
+                
+                self.topLbl.setText("Today: \(self.totalTimeWorkedAsString())")
+
             }
         }
     }
@@ -104,7 +107,47 @@ class InterfaceController: WKInterfaceController {
         }
         
         UserDefaults.standard.synchronize()
+
+    }
+    
+    
+    
+    func totalClockedTime() -> Int{
         
+        if var clockIns = UserDefaults.standard.array(forKey: "clockIns") as? [Date]{
+            if var clockOuts = UserDefaults.standard.array(forKey: "clockOuts") as? [Date]{
+                var seconds = 0
+                for i in 0..<clockIns.count{
+                    
+                  let currentSeconds = Int(clockOuts[i].timeIntervalSince(clockIns[i]))
+                  seconds += currentSeconds
+                    
+                }
+                return seconds
+
+            }
+            
+        }
+        
+        return 0
+    }
+    
+    func totalTimeWorkedAsString() -> String{
+        
+        
+        var currentClockedInSec = 0
+        if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date{
+            currentClockedInSec = Int(Date().timeIntervalSince(clockedInDate))
+            
+        }
+            
+            
+            let totalTimeInterval = currentClockedInSec + self.totalClockedTime()
+            
+            let totalHrs = totalTimeInterval / 3600
+            let totalMins = (totalTimeInterval % 3600) / 60
+        
+      return "\(totalHrs)h \(totalMins)m"
     }
     
     
