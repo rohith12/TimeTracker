@@ -43,9 +43,11 @@ class InterfaceController: WKInterfaceController {
         if clockedIn{
             //UI for clocked in
             topLbl.setHidden(false)
+            topLbl.setText("Today: \(self.totalTimeWorkedAsString())")
+            
             Btn.setTitle("Clocked-Out")
             Btn.setBackgroundColor(UIColor.red)
-            middleLbl.setText("0h 0m 0s")
+            middleLbl.setText("0s")
         }else{
             //UI for clocked out
             topLbl.setHidden(true)
@@ -63,17 +65,27 @@ class InterfaceController: WKInterfaceController {
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
             if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date{
-               let timeInterval = Int(Date().timeIntervalSince(clockedInDate))
+                let timeInterval = Int(Date().timeIntervalSince(clockedInDate))
                 
-               let hrs = timeInterval / 3600
-               let mins = (timeInterval % 3600) / 60
-               let secs = timeInterval % 60
-               
-                self.middleLbl.setText("\(hrs)h \(mins)m \(secs)s")
+                let hrs = timeInterval / 3600
+                let mins = (timeInterval % 3600) / 60
+                let secs = timeInterval % 60
+                var currentTimeStr = ""
+                if hrs != 0{
+                    currentTimeStr += "\(hrs)h"
+                }
+                if mins != 0 || hrs != 0{
+                    currentTimeStr += "\(mins)m"
+                }
+                
+                  currentTimeStr += "\(secs)s"
+                
+                
+                self.middleLbl.setText(currentTimeStr)
                 
                 
                 self.topLbl.setText("Today: \(self.totalTimeWorkedAsString())")
-
+                
             }
         }
     }
@@ -107,7 +119,7 @@ class InterfaceController: WKInterfaceController {
         }
         
         UserDefaults.standard.synchronize()
-
+        
     }
     
     
@@ -119,12 +131,12 @@ class InterfaceController: WKInterfaceController {
                 var seconds = 0
                 for i in 0..<clockIns.count{
                     
-                  let currentSeconds = Int(clockOuts[i].timeIntervalSince(clockIns[i]))
-                  seconds += currentSeconds
+                    let currentSeconds = Int(clockOuts[i].timeIntervalSince(clockIns[i]))
+                    seconds += currentSeconds
                     
                 }
                 return seconds
-
+                
             }
             
         }
@@ -140,14 +152,14 @@ class InterfaceController: WKInterfaceController {
             currentClockedInSec = Int(Date().timeIntervalSince(clockedInDate))
             
         }
-            
-            
-            let totalTimeInterval = currentClockedInSec + self.totalClockedTime()
-            
-            let totalHrs = totalTimeInterval / 3600
-            let totalMins = (totalTimeInterval % 3600) / 60
         
-      return "\(totalHrs)h \(totalMins)m"
+        
+        let totalTimeInterval = currentClockedInSec + self.totalClockedTime()
+        
+        let totalHrs = totalTimeInterval / 3600
+        let totalMins = (totalTimeInterval % 3600) / 60
+        
+        return "\(totalHrs)h \(totalMins)m"
     }
     
     
