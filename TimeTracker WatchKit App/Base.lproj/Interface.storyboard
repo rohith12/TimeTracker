@@ -1,14 +1,38 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13196" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11055"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13051"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="TimeTracker_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <label alignment="left" text="Today: 13h 4m" id="aZR-AP-AZi"/>
+                        <label alignment="center" verticalAlignment="center" text="Today 13h 44m" textAlignment="center" numberOfLines="2" minimumScaleFactor="0.5" id="Po2-M2-rUM">
+                            <fontDescription key="font" type="boldSystem" pointSize="40"/>
+                        </label>
+                        <button width="0.90000000000000002" height="28" alignment="center" verticalAlignment="bottom" title="Clock-In" id="es1-vh-HX6">
+                            <connections>
+                                <action selector="clockInAndClockOut" destination="AgC-eL-Hgc" id="fHq-aB-vQd"/>
+                            </connections>
+                        </button>
+                        <separator alignment="left" verticalAlignment="bottom" id="fcP-Bq-XqL">
+                            <color key="color" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </separator>
+                    </items>
+                    <connections>
+                        <outlet property="Btn" destination="es1-vh-HX6" id="nY6-xj-ea9"/>
+                        <outlet property="middleLbl" destination="Po2-M2-rUM" id="69j-0S-iCc"/>
+                        <outlet property="topLbl" destination="aZR-AP-AZi" id="eHV-Qy-HmA"/>
+                    </connections>
+                </controller>
             </objects>
         </scene>
     </scenes>
